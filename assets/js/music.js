@@ -144,6 +144,14 @@
   document.addEventListener("keydown", onFirst, true);
 
   global.OreMusic = {
+    play: function () {
+      muted = false;
+      if (!started) { start(); return; }
+      if (audio) {
+        audio.volume = 0.35;
+        if (audio.paused) audio.play().catch(function(){});
+      }
+    },
     toggle: function () {
       muted = !muted;
       if (!started && !muted) { start(); return; }
